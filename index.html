@@ -1,4 +1,3 @@
-# Ropas
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,4 +23,72 @@
 
 <h1>Tienda de Ropa y Zapatos</h1>
 
-<div class="category" id
+<div class="category" id="ropa">
+  <h2>Ropa</h2>
+  <div class="products">
+    <div class="product" data-name="Camiseta Básica" data-price="250">
+      <h3>Camiseta Básica</h3>
+      <p>Precio: $250</p>
+      <button onclick="addToCart(this)">Agregar al carrito</button>
+    </div>
+    <div class="product" data-name="Pantalón Casual" data-price="350">
+      <h3>Pantalón Casual</h3>
+      <p>Precio: $350</p>
+      <button onclick="addToCart(this)">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+<div class="category" id="zapatos">
+  <h2>Zapatos</h2>
+  <div class="products">
+    <div class="product" data-name="Zapatos Deportivos" data-price="400">
+      <h3>Zapatos Deportivos</h3>
+      <p>Precio: $400</p>
+      <button onclick="addToCart(this)">Agregar al carrito</button>
+    </div>
+    <div class="product" data-name="Botines de Cuero" data-price="500">
+      <h3>Botines de Cuero</h3>
+      <p>Precio: $500</p>
+      <button onclick="addToCart(this)">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+<div id="cart">
+  <h2>Carrito</h2>
+  <ul id="cartItems"></ul>
+  <p><strong>Total fijo a pagar: $1000</strong></p>
+  <button id="payButton" onclick="goToPayment()">Pagar $1000</button>
+</div>
+
+<script>
+  const cartItems = [];
+
+  function addToCart(button) {
+    const productDiv = button.parentElement;
+    const name = productDiv.getAttribute('data-name');
+    const price = Number(productDiv.getAttribute('data-price'));
+
+    cartItems.push({ name, price });
+    renderCart();
+  }
+
+  function renderCart() {
+    const ul = document.getElementById('cartItems');
+    ul.innerHTML = '';
+    cartItems.forEach((item) => {
+      const li = document.createElement('li');
+      li.textContent = `${item.name} - $${item.price}`;
+      ul.appendChild(li);
+    });
+  }
+
+  function goToPayment() {
+    const paymentLink = "https://envios.pichincha.com/l/Cx197Pux";
+    window.location.href = paymentLink;
+  }
+</script>
+
+</body>
+</html>
